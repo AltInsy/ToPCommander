@@ -1,0 +1,156 @@
+//---------------------------------------------------------------------------
+
+// This software is Copyright (c) 2015 Embarcadero Technologies, Inc.
+// You may only use this software if you are an authorized licensee
+// of an Embarcadero developer tools product.
+// This software is considered a Redistributable as defined under
+// the software license agreement that comes with the Embarcadero Products
+// and is subject to that software license agreement.
+
+//---------------------------------------------------------------------------
+
+unit Main_u;
+
+interface
+
+uses
+  Winapi.Windows,
+  Winapi.Messages,
+  System.SysUtils,
+  System.Variants,
+  System.Classes,
+  System.ImageList,
+  System.Actions,
+  Vcl.Graphics,
+  Vcl.Controls,
+  Vcl.Forms,
+  Vcl.Dialogs,
+  Vcl.ExtCtrls,
+  Vcl.WinXCtrls,
+  Vcl.StdCtrls,
+  Vcl.CategoryButtons,
+  Vcl.Buttons,
+  Vcl.ImgList,
+  Vcl.Imaging.PngImage,
+  Vcl.ComCtrls,
+  Vcl.ActnList;
+
+type
+  TfrmMain = class(TForm)
+    pnlToolbar: TPanel;
+    pnlWork: TPanel;
+    svwMenu: TSplitView;
+    catMenuItems: TCategoryButtons;
+    imlIcons: TImageList;
+    imgMenu: TImage;
+    alstMenu: TActionList;
+    actItemInfo: TAction;
+    actSkillInfo: TAction;
+    actNPC: TAction;
+    lblTitle: TLabel;
+    actMissions: TAction;
+    actMaps: TAction;
+    actCharacters: TAction;
+    actAccounts: TAction;
+    actDataBase: TAction;
+    actCfgMaker: TAction;
+    actCompiler: TAction;
+    actAbout: TAction;
+    procedure FormCreate(Sender: TObject);
+    procedure grpDisplayModeClick(Sender: TObject);
+    procedure grpPlacementClick(Sender: TObject);
+    procedure grpCloseStyleClick(Sender: TObject);
+    procedure svwMenuClosed(Sender: TObject);
+    procedure svwMenuClosing(Sender: TObject);
+    procedure svwMenuOpened(Sender: TObject);
+    procedure svwMenuOpening(Sender: TObject);
+    procedure catMenuItemsCategoryCollapase(Sender: TObject; const Category: TButtonCategory);
+    procedure imgMenuClick(Sender: TObject);
+    procedure cbxVclStylesChange(Sender: TObject);
+  private
+  public
+  end;
+
+var
+  frmMain: TfrmMain;
+
+implementation
+
+uses
+  Vcl.Themes;
+
+{$R *.dfm}
+
+procedure TfrmMain.FormCreate(Sender: TObject);
+var
+  StyleName: string;
+begin
+  for StyleName in TStyleManager.StyleNames do
+    //cbxVclStyles.Items.Add(StyleName);
+
+  //cbxVclStyles.ItemIndex := cbxVclStyles.Items.IndexOf(TStyleManager.ActiveStyle.Name);
+end;
+
+procedure TfrmMain.cbxVclStylesChange(Sender: TObject);
+begin
+  //TStyleManager.SetStyle(cbxVclStyles.Text);
+end;
+
+procedure TfrmMain.imgMenuClick(Sender: TObject);
+begin
+ // if SV.Opened then
+ //   SV.Close
+ // else
+ //   SV.Open;
+end;
+
+procedure TfrmMain.grpDisplayModeClick(Sender: TObject);
+begin
+//  SV.DisplayMode := TSplitViewDisplayMode(grpDisplayMode.ItemIndex);
+end;
+
+procedure TfrmMain.grpCloseStyleClick(Sender: TObject);
+begin
+ // SV.CloseStyle := TSplitViewCloseStyle(grpCloseStyle.ItemIndex);
+end;
+
+procedure TfrmMain.grpPlacementClick(Sender: TObject);
+begin
+ // SV.Placement := TSplitViewPlacement(grpPlacement.ItemIndex);
+end;
+
+procedure TfrmMain.svwMenuClosed(Sender: TObject);
+begin
+  // When TSplitView is closed, adjust ButtonOptions and Width
+  catMenuItems.ButtonOptions := catMenuItems.ButtonOptions - [boShowCaptions];
+ // if SV.CloseStyle = svcCompact then
+ //   catMenuItems.Width := SV.CompactWidth;
+end;
+
+procedure TfrmMain.svwMenuClosing(Sender: TObject);
+begin
+//
+end;
+
+procedure TfrmMain.svwMenuOpened(Sender: TObject);
+begin
+  // When not animating, change size of catMenuItems when TSplitView is opened
+  catMenuItems.ButtonOptions := catMenuItems.ButtonOptions + [boShowCaptions];
+ // catMenuItems.Width := SV.OpenedWidth;
+end;
+
+procedure TfrmMain.svwMenuOpening(Sender: TObject);
+begin
+  // When animating, change size of catMenuItems at the beginning of open
+  catMenuItems.ButtonOptions := catMenuItems.ButtonOptions + [boShowCaptions];
+//  catMenuItems.Width := SV.OpenedWidth;
+end;
+
+procedure TfrmMain.catMenuItemsCategoryCollapase(Sender: TObject; const Category: TButtonCategory);
+begin
+  // Prevent the catMenuItems Category group from being collapsed
+  catMenuItems.Categories[0].Collapsed := False;
+end;
+
+
+end.
